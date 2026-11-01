@@ -1,0 +1,33 @@
+class Solution {
+
+    public String encode(List<String> strs) {
+        if(strs.isEmpty() ) return "";
+        StringBuilder stb = new StringBuilder();
+        for(String str: strs){
+            stb.append(str.length());
+            stb.append("#");
+            stb.append(str);
+        }
+        return stb.toString();
+    }
+
+    public List<String> decode(String str) {
+        if(str.length() == 0){
+            return new ArrayList<String>();
+        }
+        int i =0;
+        List<String> res = new ArrayList<>();
+        while(i<str.length()){
+            int j = i;
+            while(str.charAt(j)!='#'){
+                j++;
+            }
+            int length = Integer.parseInt(str.substring(i,j));
+            i = j+1;
+            j=i+length;
+            res.add(str.substring(i,j));
+            i = j;
+        }
+       return res;
+    }
+}
